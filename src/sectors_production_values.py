@@ -75,15 +75,18 @@ class SectorsProductionValues:
         """
         Substitui a matriz de montante e o array de demanda pelos correspondentes ao aplicar o método de eliminação de Gauss.
 
-        No matrix por método de eliminação de gauss, todos os valores da matrix abaixo da diagonal principal devem ser 0 (zero).
+        Na matrix por método de eliminação de gauss, todos os valores da matriz abaixo da diagonal principal devem ser 0 (zero). Para isso, usa-se um pivot de referência cujos elementos abaixo dele devem ser 0.
         """
 
         row_amount: int = self.amount_matrix.shape[0]
 
+        # O índice i permite acessar qualquer elemento da linha (ou ela própria) do segundo operando da diferença
         for i in range(0, row_amount - 1):
 
+            # O índice j permite acessar qualquer elemento da linha (ou ela própria) do primeiro operando da diferença
             for j in range(i + 1, row_amount):
 
+                # Os elementos da diagonal principal (Acessados por self.amount_matrix[i][i]) se comportam como pivot
                 coefficients: Tuple[float] = SectorsProductionValues.discoverCoefficients(self.amount_matrix[j][i], self.amount_matrix[i][i])
 
                 self.amount_matrix[j] =  self.amount_matrix[j] * coefficients[0] - self.amount_matrix[i] * coefficients[1] # recebe um np.ndarray
