@@ -51,7 +51,7 @@ class SectorsProductionValues:
         
 
     @staticmethod
-    def discoverCoefficients(term1: float, term2: float) -> Tuple[int]:
+    def discoverCoefficients(term1: float, term2: float) -> Tuple[float]:
 
         """
         Descobre os coeficientes dos termos para que a diferença seja 0.
@@ -84,7 +84,7 @@ class SectorsProductionValues:
 
             for j in range(i + 1, row_amount):
 
-                coefficients: Tuple[int] = SectorsProductionValues.discoverCoefficients(self.amount_matrix[j][i], self.amount_matrix[i][i])
+                coefficients: Tuple[float] = SectorsProductionValues.discoverCoefficients(self.amount_matrix[j][i], self.amount_matrix[i][i])
 
                 self.amount_matrix[j] =  self.amount_matrix[j] * coefficients[0] - self.amount_matrix[i] * coefficients[1] # recebe um np.ndarray
 
